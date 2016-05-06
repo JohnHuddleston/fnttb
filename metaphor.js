@@ -1,13 +1,16 @@
+/*Copyright (c) 2012 Darius Kazemi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+//original code by github.com/dariusk, (HEAVY) modifications made by github.com/ShameOnATrip
+
+
 var restclient = require('node-restclient');
 var Twit = require('twit');
-var app = require('express').createServer();
-
-// I deployed to Nodejitsu, which requires an application to respond to HTTP requests
-// If you're running locally you don't need this, or express at all.
-app.get('/', function(req, res){
-    res.send('Hello world.');
-});
-app.listen(3000);
 
 // insert your twitter app info here
 var T = new Twit({
@@ -17,96 +20,37 @@ var T = new Twit({
   access_token_secret:  ''
 });
 
+
+//Name Segments by Gender and Race
+var dorfMaleFirst = ["Ar", "Dar", "Ur", "Sur", "Lad", "Saf", "Raf", "Der", "Bo", "Gam", "Bom", "Da", "Dar", "Dan", "Khi", "Khim", "Lo", "Bel", "Rei", "Thr", "Thra", "Yur"];
+var dorfMaleLast = ["ist", "ust", "all", "rall", "sohn", "tist", "tol", "dol", "far", "var", "mar", "fur", "ril", "ghal", "in", "fin", "fir", "bur", "bir", "gar"];
+
+var dorfFemFirst = ["D", "Sir", "Sar", "Laur", "Dahl", "Mish", "Sish", "Sash", "Tam", "Cam", "Da", "Lo", "Dar", "Dash", "Hish"];
+var dorfFemLast = ["a", "ah", "ka", "da", "ta", "is", "isha", "ishta", "ora", "era", "hilda", "theow", "gal"];
+
+var dorfFamFirst = ["Iron", "Gold", "Red", "Dark", "Stone", "Anvil", "Hammer", "Wolf", "Barrel", "Axe", "Ash", "Amber", "Righteous", "Twilight", "White", "Wind", "Holy", "Glander", "Earth", "Emerald", "Lantern", "Cask", "Cavern"];
+var dorfFamLast = ["son", "hammer", "forge", "reach", "crown", "kil", "rett", "mort", "sort", "flask", "ale", "arm", "belt", "bringer", "sword", "kindler", "bane", "hood", "mace", "mover", "smith", "speaker"];
+
+//Title segments
+var occupation = ["Destroyer", "Creator", "Ruler", "Servant", "Honer", "Artisan", "Master", "Apprentice", "Failure", "Ender", "Beginner", "Thief", "Defender", "Knight", "Enemy", "Warden", "Protector"];
+var subject = ["Middle Earth", "the Under-realms", "All That Is Good", "the Sky", "their Kingdom", "War", "Fortune", "Conquest", "Destiny", "the Universe", "Nothing", "All", "Nature", "Order", "Law", "Chaos", "Good", "Evil", "Light", "Darkness", "the Ground", "Terra", "the Forests", "the Oceans", "the Seas", "the Mountains", "Treasure", "Souls", ""];
+
 var statement =   "";
 
-// insert your Wordnik API info below
-var getNounsURL = "http://api.wordnik.com/v4/words.json/randomWords?" +
-                  "minCorpusCount=1000&minDictionaryCount=10&" +
-                  "excludePartOfSpeech=proper-noun,proper-noun-plural,proper-noun-posessive,suffix,family-name,idiom,affix&" +
-                  "hasDictionaryDef=true&includePartOfSpeech=noun&limit=2&maxLength=12&" +
-                  "api_key=______YOUR_API_KEY_HERE___________";
-
-var getAdjsURL =  "http://api.wordnik.com/v4/words.json/randomWords?" +
-                  "hasDictionaryDef=true&includePartOfSpeech=adjective&limit=2&" + 
-                  "minCorpusCount=100&api_key=______YOUR_API_KEY_HERE___________";
-
-
-function makeMetaphor() {
-  statement = "";
-  restclient.get(getNounsURL,
-  function(data) {
-    first = data[0].word.substr(0,1);
-    first2 = data[1].word.substr(0,1);
-    article = "a";
-    if (first === 'a' ||
-        first === 'e' ||
-        first === 'i' ||
-        first === 'o' ||
-        first === 'u') {
-      article = "an";
-    }
-   article2 = "a";
-    if (first2 === 'a' ||
-        first2 === 'e' ||
-        first2 === 'i' ||
-        first2 === 'o' ||
-        first2 === 'u') {
-      article2 = "an";
-    }
-
-    var connector = "is";
-    switch (Math.floor(Math.random()*12)) {
-      case 0:
-        connector = "of";
-      break;
-      case 1:
-        connector = "is";
-      break;
-      case 2:
-        connector = "is";
-      break;
-      case 3:
-        connector = "considers";
-      break;
-      case 4:
-        connector = "is";
-      break;
-    }
-
-    statement += article + " " + data[0].word + " " + connector + " " + article2 + " " + data[1].word;
-
-    restclient.get(
-      getAdjsURL,
-      function(data) {
-        var connector = " and";
-        switch (Math.floor(Math.random()*8)) {
-          case 0:
-            connector = ", not";
-          break;
-          case 1:
-            connector = ", yet";
-          break;
-          case 2:
-            connector = " but";
-          break;
-          case 3:
-            connector = ",";
-          break;
-          case 4:
-            connector = ", but not";
-          break;
-        }
-        output = data[0].word + connector + " " + data[1].word;
-        statement = statement + ": " + output;
-        console.log(statement);
-        T.post('statuses/update', { status: statement}, function(err, reply) {
-          console.log("error: " + err);
-          console.log("reply: " + reply);
-        });
-      }    
-    ,"json");
-  }    
-  ,"json");
+function makeName() {
+	statement = "";
+	gender = Math.floor((Math.random() * 2)+1);
+	if (gender > 1) {
+		statement += dorfMaleFirst[Math.floor((Math.random() * dorfMaleFirst.length))] + dorfMaleLast[Math.floor((Math.random() * dorfMaleLast.length))];
+	} else {
+		statement += dorfFemFirst[Math.floor((Math.random() * dorfFemFirst.length))] + dorfFemLast[Math.floor((Math.random() * dorfFemLast.length))];
+	}
+	statement += " " + dorfFamFirst[Math.floor((Math.random() * dorfFamFirst.length))] + dorfFamLast[Math.floor((Math.random() * dorfFamLast.length))] + " the " + occupation[Math.floor((Math.random() * occupation.length))] + " of " + subject[Math.floor((Math.random() * subject.length))];
+	console.log(statement);
+	T.post('statuses/update', {status: statement}, function(err, reply) {
+		console.log("error: " + err);
+		console.log("reply: " + reply);
+	});
 }
 
 function favRTs () {
@@ -118,12 +62,9 @@ function favRTs () {
   });
 }
 
-// every 2 minutes, make and tweet a metaphor
-// wrapped in a try/catch in case Twitter is unresponsive, don't really care about error
-// handling. it just won't tweet.
 setInterval(function() {
   try {
-    makeMetaphor();
+    makeName();
   }
  catch (e) {
     console.log(e);
