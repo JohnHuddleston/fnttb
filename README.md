@@ -11,4 +11,4 @@ Requires [node](http://nodejs.org/) and [npm](http://npmjs.org/). You also need 
 
 > npm install express@2.5.9
 
-> node metaphor.js
+> node fnttb.js
