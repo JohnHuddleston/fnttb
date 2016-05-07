@@ -14,10 +14,10 @@ var Twit = require('twit');
 
 // insert your twitter app info here
 var T = new Twit({
-  consumer_key:         '1XP8tfz1am1yw6iMPpZ7BV7j4', 
-  consumer_secret:      'pRxvpqto7h1KIEyGXcLYzb5VAvYOs00umQN32JG7JFpGDqiRzQ',
-  access_token:         '728595030378729472-jJeTZ1LqEXchzAWMjk0N2N1W1fk8fc4',
-  access_token_secret:  '7cSLEwO65FDPODGoPTsIpALDgRKTqAMXAWKrCs457O9PF'
+  consumer_key:         '', 
+  consumer_secret:      '',
+  access_token:         '',
+  access_token_secret:  ''
 });
 
 
