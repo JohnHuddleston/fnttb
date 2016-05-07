@@ -17,6 +17,11 @@ var config = require('./config/config');
 // insert your twitter app info here
 var T = new Twit(config.twit);
 
+var ns = require('./data/name_segments.json');
+
+//example usage of name segment data file
+console.log(ns.dwarves.male.first[4] + " " + ns.dwarves.male.last[6] + " " + ns.dwarves.titles.occupation[6] + " of " + ns.dwarves.titles.occupation[9]);
+
 //Name Segments by Gender and Race
 
 //Dwarves

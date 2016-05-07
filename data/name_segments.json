@@ -1,0 +1,34 @@
+{
+    "dwarves": {
+        "male": {
+            "first": ["Ar", "Dar", "Ur", "Sur", "Lad", "Saf", "Raf", "Der", "Bo", "Gam", "Bom", "Da", "Dar", "Dan", "Khi", "Khim", "Lo", "Bel", "Rei", "Thr", "Thra", "Yur", "Yuru", "Thent", "Thend", "Urud", "Urut", "Ulluth"],
+            "last": ["ist", "ust", "all", "rall", "sohn", "tist", "tol", "dol", "far", "var", "mar", "fur", "ril", "ghal", "in", "fin", "fir", "bur", "bir", "gar"]
+        },
+        "female": {
+            "first": ["D", "Sir", "Sar", "Laur", "Dahl", "Mish", "Sish", "Sash", "Tam", "Cam", "Da", "Lo", "Dar", "Dash", "Hish"],
+            "last": ["a", "ah", "ka", "da", "ta", "is", "isha", "ishta", "ora", "era", "hilda", "theow", "gal"]
+        },
+        "family": {
+            "first": ["Iron", "Gold", "Red", "Dark", "Stone", "Anvil", "Hammer", "Wolf", "Barrel", "Axe", "Ash", "Amber", "Righteous", "Twilight", "White", "Wind", "Holy", "Glander", "Earth", "Emerald", "Lantern", "Cask", "Cavern"],
+            "last": ["son", "hammer", "forge", "reach", "crown", "kil", "rett", "mort", "sort", "flask", "ale", "arm", "belt", "bringer", "sword", "kindler", "bane", "hood", "mace", "mover", "smith", "speaker"]
+        },
+        "titles": {
+            "occupation": ["Destroyer", "Creator", "Ruler", "Servant", "Honer", "Artisan", "Master", "Apprentice", "Failure", "Ender", "Beginner", "Thief", "Defender", "Knight", "Enemy", "Warden", "Protector", "Lord", "Cleric", "Missionary", "Bard", "Brewer"],
+            "subject": ["Middle Earth", "the Under-realms", "All That Is Good", "the Sky", "their Kingdom", "War", "Fortune", "Conquest", "Destiny", "the Universe", "Nothing", "All", "Nature", "Order", "Law", "Chaos", "Good", "Evil", "Light", "Darkness", "the Ground", "Terra", "the Forests", "the Oceans", "the Seas", "the Mountains", "Treasure", "Souls", "Warriors", "their Tribe", "End-Times"]
+        }
+
+    },
+    "goblins": {
+        "male": {
+            "first": ["Rak", "Tik", "Rug", "Zugg", "Rooz", "Muk", "Kri", "Tek", "Sik", "Burk", "Sur", "Kol", "Buk"],
+            "last": ["sik", "ilk", "erk", "urk", "ork", "un", "uk", "sher", "kol", "krik", "dort", "sort", "vurk", "valk", "-uk", "'ivvik", "-irk"]
+        },
+        "female": {
+            "first": ["Rak", "Tik", "Rug", "Zugg", "Rooz", "Muk", "Kri", "Tek", "Sik", "Burk", "Sur", "Kol", "Buk"],
+            "last": ["erra", "erro", "arra", "arka", "orka", "uka", "ukina", "orkina", "ilkina", "ilka", "vurka", "valka", "sikka", "kulka", "kulkania", "ilkania"]
+        },
+        "titles": {
+            "title": ["Thief", "Assassin", "Trapmaker", "Mercenary", "Traitor", "Axegoblin", "Archer", "Half-breed", "Barbarian", "Bard", "Villain", "Hero", "Ally of Man", "Occultist", "Pikegoblin", "Hunter"]
+        }
+    }
+}
