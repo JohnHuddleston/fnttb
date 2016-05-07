@@ -1,0 +1,15 @@
+{
+  "name": "FNTTB",
+  "description": "Fantasy Name and Title Twitter Bot (FNTTB)",
+  "repository": "https://github.com/ShameOnATrip/fnttb.git",
+  "author": "ShameOnATrip <jhuddleston5646@gmail.com>",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.13.4",
+    "node-restclient": "0.0.1",
+    "twit": "^2.2.4"
+  },
+  "scripts": {
+    "start": "node fnttb.js"
+  }
+}

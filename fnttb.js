@@ -12,14 +12,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 var restclient = require('node-restclient');
 var Twit = require('twit');
 
-// insert your twitter app info here
-var T = new Twit({
-  consumer_key:         '1XP8tfz1am1yw6iMPpZ7BV7j4', 
-  consumer_secret:      'pRxvpqto7h1KIEyGXcLYzb5VAvYOs00umQN32JG7JFpGDqiRzQ',
-  access_token:         '728595030378729472-jJeTZ1LqEXchzAWMjk0N2N1W1fk8fc4',
-  access_token_secret:  '7cSLEwO65FDPODGoPTsIpALDgRKTqAMXAWKrCs457O9PF'
-});
+var config = require('./config/config');
 
+// insert your twitter app info here
+var T = new Twit(config.twit);
 
 //Name Segments by Gender and Race
 
